@@ -1,12 +1,22 @@
+import { useDispatch } from 'react-redux';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import MenuOutlined from '@mui/icons-material/MenuOutlined';
 import { Grid, Typography } from '@mui/material';
 import LogoutOutlined from '@mui/icons-material/LogoutOutlined';
+import { startLogout } from '../../store/auth';
 
 
 export const NavBar = ({ drawerWith = 240 }) => {
+
+    const dispatch = useDispatch();
+
+    const onLogout = () => {
+        
+        dispatch( startLogout() );
+
+    }
 
     return (
         <AppBar
@@ -32,7 +42,9 @@ export const NavBar = ({ drawerWith = 240 }) => {
                         Journal App
                     </Typography>
 
-                    <IconButton color="error">
+                    <IconButton color="error"
+                        onClick={ onLogout }
+                    >
                         <LogoutOutlined />
                     </IconButton>
                 </Grid>
